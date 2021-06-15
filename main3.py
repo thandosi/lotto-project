@@ -6,7 +6,7 @@ root.geometry("500x300")
 
 class Method:
     def __init__(self, master):
-        self.head_label = Label(master,text="Choose Payment Method")
+        self.head_label = Label(master, text="Choose Payment Method")
         self.head_label.place(x=170, y=10)
 
         self.category_lbl = Label(master, text="Select Payment Method:")
