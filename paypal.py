@@ -7,18 +7,18 @@ root.title("Paypal")
 root.geometry("500x500")
 root.config(bg="yellow")
 
+
 class Paypal:
     def pay(self):
 
         self.value = StringVar()
         self.StringVar = IntVar()
 
-
         self.information = requests.get('https://v6.exchangerate-api.com/v6/3b6104d9c62069d198e73219/latest/USD')
         self.information_json = self.information.json()
 
         self.conversion_rate = self.information_json['conversion_rates']
-        self.print(self.conversion_rate)
+        print(self.conversion_rate)
 
 
 # Creating a label and entries
@@ -41,7 +41,7 @@ class Paypal:
 # Doing the Conversion of the data with its loop
         self.convert_list = Listbox(root, width=20)
         for i in self.conversion_rate.keys():
-           self.convert_list.insert(END, str(i))
+            self.convert_list.insert(END, str(i))
         self.convert_list.place(x=130, y=90)
 
 
@@ -60,7 +60,6 @@ class Paypal:
             root.destroy()
 
 # creating btn
-
 
         self.convert_btn = Button(root, text="Submit", font=10, borderwidth="10", fg="black")
         self.convert_btn.place(x=5, y=300)

@@ -3,11 +3,14 @@ from tkinter import ttk
 
 root = Tk()
 root.geometry("500x500")
+root.title('Fill in Bank Details')
 
 class Account:
     def __init__(self, master):
         self.head_label = Label(master, text="Fill in your details")
         self.head_label.place(x=170, y=10)
+        self.head_label = Label(master, text="choose bank")
+        self.head_label.place(x=10, y=90)
         self.head_label = Label(master, text="Account holder")
         self.head_label.place(x=10, y=120)
         self.head_label = Label(master, text="Account Number")
@@ -17,6 +20,9 @@ class Account:
         self.head_label = Label(master, text="Expiry Date")
         self.head_label.place(x=10, y=210)
 
+        self.var = StringVar()
+        self.category_list = ttk.Combobox(master, textvariable=self.var, width=12, value=["Capitec Bank", "FNB", "ABSA", "Standard Bank"])
+        self.category_list.place(x=150, y=90)
         self.acc_entry = Entry()
         self.acc_entry.place(x=150, y=120)
         self.number_entry = Entry()
