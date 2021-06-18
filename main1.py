@@ -10,7 +10,7 @@ class LottoForm:
         self.root.geometry("1000x750")
         self.root.title('Register')
         self.root.config(bg="yellow")
-        self.load = Image.open("lotto.jpg")
+        self.load = Image.open("register.jpg")
         self.loader = ImageTk.PhotoImage(self.load)
         self.img = Label(self.root, image=self.loader)
         self.img.place(x=0, y=0)
@@ -74,7 +74,7 @@ class LottoForm:
             elif int(year2) > 3 and int(year2) > 21:
                 messagebox.showinfo(title="Let's Play!", message="Lets Play!")
                 root.destroy()
-                import main2
+                import trr1
             else:
                 x = int(year) - 3
                 messagebox.showinfo(title="Under Age", message="Your are too young to play")

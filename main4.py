@@ -3,6 +3,7 @@ from tkinter import ttk
 
 root = Tk()
 root.geometry("500x500")
+root.config(bg="yellow")
 root.title('Fill in Bank Details')
 
 class Account:

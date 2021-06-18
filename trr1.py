@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 import random
 
@@ -16,6 +17,8 @@ class Pick:
         self.img.place(x=0, y=0)
 
         self.numbers = []
+        self.numbers2 = []
+        self.numbers3 = []
         self.numbers.sort()
 
         self.vs = []
@@ -26,25 +29,30 @@ class Pick:
 
         # Your playing numbers
         self.output1 = Entry(width="30")
-        self.output1.place(x=380, y=140)
+        self.output1.place(x=300, y=140)
         self.output2 = Entry(width="30")
-        self.output2.place(x=380, y=185)
+        self.output2.place(x=300, y=185)
         self.output3 = Entry(width="30")
-        self.output3.place(x=380, y=230)
-        self.number_label = Label(root, text="Your numbers", bg='ROYAL BLUE')
-        self.number_label.place(x=380, y=100)
+        self.output3.place(x=300, y=230)
+        self.number_label1 = Label(root, text="Your numbers", bg='ROYAL BLUE')
+        self.number_label1.place(x=300, y=100)
 
         # Random numbers output
         self.output = Entry(width="30")
-        self.output.place(x=680, y=140)
-        self.number_label = Label(root, text="Draw", width="15", bg="royal blue")
-        self.number_label.place(x=680, y=100)
+        self.output.place(x=580, y=140)
+        self.number_label2 = Label(root, text="Draw", width="15", bg="royal blue")
+        self.number_label2.place(x=580, y=100)
 
         # Your numbers vs Draw output
         self.output_vs = Entry(width="30")
-        self.output_vs.place(x=680, y=230)
-        self.number_label = Label(root, text="Your numbers vs Draw", bg="royal blue")
-        self.number_label.place(x=680, y=190)
+        self.output_vs.place(x=880, y=140)
+        self.output_vs = Entry(width="30")
+        self.output_vs.place(x=880, y=180)
+        self.output_vs = Entry(width="30")
+        self.output_vs.place(x=880, y=220)
+
+        self.number_label3 = Label(root, text="Your numbers vs Draw", bg="royal blue")
+        self.number_label3.place(x=880, y=100)
 
 
 # creating buttons
@@ -151,7 +159,7 @@ class Pick:
         self.btn47.place(x=170, y=380,)
         self.btn48 = Button(text="48", width="1", command=lambda: self.insert(48), bg="royal blue")
         self.btn48.place(x=210, y=380)
-        self.btn49 = Button(text="49", width="1", command=lambda :self.insert(49), bg="royal blue")
+        self.btn49 = Button(text="49", width="1", command=lambda: self.insert(49), bg="royal blue")
         self.btn49.place(x=10, y=420)
 
         self.btn12 = Button(text="Play", width="5", font="20", command=self.random())
@@ -167,8 +175,75 @@ class Pick:
         self.output3.insert(END, val)
 
     def random(self):
+        self.prizes = [0, 20, 100, 50, 2384, 8584, 10000000]
+        self.matched = 0
+        self.matched2 = 0
+        self.matched3 = 0
+        self.won = 0
+        self. won2 = 0
+        self.won3 = 0
         self.randomlist = random.sample(range(1, 49), 6)
         self.randomlist.sort()
+        self.vs1 = set(self.numbers).intersection(set(self.randomlist))
+        self.vs2 = set(self.numbers2).intersection(set(self.randomlist))
+        self.vs3 = set(self.numbers3).intersection(set(self.randomlist))
+        for number in self.numbers:
+            if number in self.randomlist:
+                self.matched += 1
+            if self.matched == 2:
+                self.won = self.prizes[2]
+            elif self.matched == 3:
+                self.won = self.prizes[3]
+            elif self.matched == 4:
+                self.won = self.prizes[4]
+            elif self.matched == 5:
+                self.won = self.prizes[5]
+            elif self.matched == 6:
+                self.won = self.prizes[6]
+        else:
+            messagebox.showerror("Matches", "Matches in set one: " + str(self.matched) + "\nEarnings: " + "R" + str(self.won) +
+                                 "\nMatching number: " + str(self.vs1))
+
+        for number in self.numbers2:
+            if number in self.randomlist:
+                self.matched2 += 1
+            if self.matched2 == 2:
+                self.won2 = self.prizes[2]
+            elif self.matched2 == 3:
+                self.won2 = self.prizes[3]
+            elif self.matched2 == 4:
+                self.won2 = self.prizes[4]
+            elif self.matched2 == 5:
+                self.won2 = self.prizes[5]
+            elif self.matched2 == 6:
+                self.won2 = self.prizes[6]
+        else:
+            messagebox.showerror("Matches", "Matches in set one: " + str(self.matched2) + "\nEarnings: " +
+                                 "R" + str(self.won2) + "\nMatching number: " + str(self.vs2))
+
+        for number in self.numbers3:
+            if number in self.randomlist:
+                self.matched3 += 1
+            if self.matched3 == 2:
+                self.won3 = self.prizes[2]
+            elif self.matched3 == 3:
+                self.won3 = self.prizes[3]
+            elif self.matched3 == 4:
+                self.won3 = self.prizes[4]
+            elif self.matched3 == 5:
+                self.won3 = self.prizes[5]
+            elif self.matched3 == 6:
+                self.won3 = self.prizes[6]
+        else:
+            messagebox.showerror("Matches", "Matches in set one: " + str(self.matched3) + "\nEarnings: " +
+                                 "R" + str(self.won3) + "\nMatching number: " + str(self.vs3))
+
+        if len(self.numbers) == 6 and len(self.numbers2) == 6 and len(self.numbers3) == 6:
+            user_prize = float(self.won + self.won2 + self.won3)
+            self.number_label1.config(text="R" + str(user_prize))
+            self.number_label2.config(text="random-list")
+        else:
+            messagebox.showinfo("Error", "Please use all your tries first")
         for x in self.randomlist:
             if x in self.numbers:
                 self.vs.append(x)

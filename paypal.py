@@ -1,15 +1,13 @@
 from tkinter import *
 import requests
 
-# creating the window
-root = Tk()
-root.title("Paypal")
-root.geometry("500x500")
-root.config(bg="yellow")
-
 
 class Paypal:
     def pay(self):
+        self.root = root
+        self.root.title("Paypal")
+        self.root.geometry("500x500")
+        self.root.config(bg="yellow")
 
         self.value = StringVar()
         self.StringVar = IntVar()
@@ -45,11 +43,11 @@ class Paypal:
         self.convert_list.place(x=130, y=90)
 
 
-        #def converting():
-         #   num = float(my_entry1.get())
-          #  print(information_json['conversion_rates'][convert_list.get(ACTIVE)])
-           # ans = num * information_json['conversion_rates'][convert_list.get(ACTIVE)]
-            #my_label3['text'] = ans
+    def converting(self):
+        self.num = float(self.my_entry1.get())
+        print(self.information_json['conversion_rates'][self.convert_list.get(ACTIVE)])
+        self.ans = self.num * self.information_json['conversion_rates'][self.convert_list.get(ACTIVE)]
+        self.my_label2['text'] = self.ans
 
 
         def clear():
