@@ -36,6 +36,8 @@ class Account:
         self.btn1 = Button(master, text="submit")
         self.btn1.place(x=10, y=250)
 
+         
+
 
 
 app =Account(root)

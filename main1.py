@@ -74,7 +74,7 @@ class LottoForm:
             elif int(year2) > 3 and int(year2) > 21:
                 messagebox.showinfo(title="Let's Play!", message="Lets Play!")
                 root.destroy()
-                import trr1
+                import lott
             else:
                 x = int(year) - 3
                 messagebox.showinfo(title="Under Age", message="Your are too young to play")
