@@ -78,9 +78,11 @@ class LottoForm:
             elif int(year) <= 3:
 
                 messagebox.showinfo(title="Let's Play!", message="Lets Play!")
+                playsound('login.wav')
                 root.destroy()
             elif int(year2) > 3 and int(year2) > 21:
                 messagebox.showinfo(title="Let's Play!", message="Lets Play!")
+                playsound('login.wav')
                 root.destroy()
                 import lott
             else:
