@@ -2,11 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import random
+import requests
+from playsound import playsound
 
 root = Tk()
 root.config(bg="yellow")
 root.title("Lotto Machine")
-root.geometry("1200x640")
+root.geometry("1200x1240")
 load = Image.open("lot.jpg")
 loader = ImageTk.PhotoImage(load)
 img = Label(root, image=loader)
@@ -15,113 +17,113 @@ img.place(x=0, y=0)
 
 class LotteryMachine:
     def __init__(self, master):
-        self.numbers_label = Label(master, text="Good Luck", font="poppins 10", bg="royal Blue")
+        self.numbers_label = Label(master, text="Choose Your Lucky Numbers", bg="royal Blue")
         self.numbers_label.place(x=550, y=10)
 
-        self.btn1 = Button(master, text=1, command=lambda: self.on_click(1))
+        self.btn1 = Button(master, text=1, command=lambda: self.selected_number(1))
         self.btn1.place(x=10, y=100)
-        self.btn2 = Button(master, text=2, command=lambda: self.on_click(2))
+        self.btn2 = Button(master, text=2, command=lambda: self.selected_number(2))
         self.btn2.place(x=50, y=100)
-        self.btn3 = Button(master, text=3, command=lambda: self.on_click(3))
+        self.btn3 = Button(master, text=3, command=lambda: self.selected_number(3))
         self.btn3.place(x=90, y=100)
-        self.btn4 = Button(master, text=4, command=lambda: self.on_click(4))
+        self.btn4 = Button(master, text=4, command=lambda: self.selected_number(4))
         self.btn4.place(x=130, y=100)
-        self.btn5 = Button(master, text=5, command=lambda: self.on_click(5))
+        self.btn5 = Button(master, text=5, command=lambda: self.selected_number(5))
         self.btn5.place(x=170, y=100)
-        self.btn6 = Button(master, text=6, command=lambda: self.on_click(6))
+        self.btn6 = Button(master, text=6, command=lambda: self.selected_number(6))
         self.btn6.place(x=210, y=100)
 
-        self.btn7 = Button(master, text=7, command=lambda: self.on_click(7))
+        self.btn7 = Button(master, text=7, command=lambda: self.selected_number(7))
         self.btn7.place(x=10, y=140)
-        self.btn8 = Button(master, text=8, command=lambda: self.on_click(8))
+        self.btn8 = Button(master, text=8, command=lambda: self.selected_number(8))
         self.btn8.place(x=50, y=140)
-        self.btn9 = Button(master, text=9, command=lambda: self.on_click(9))
+        self.btn9 = Button(master, text=9, command=lambda: self.selected_number(9))
         self.btn9.place(x=90, y=140)
-        self.btn10 = Button(master, text=10, command=lambda: self.on_click(10), width="1")
+        self.btn10 = Button(master, text=10, command=lambda: self.selected_number(10), width="1")
         self.btn10.place(x=130, y=140)
-        self.btn11 = Button(master, text=11, command=lambda: self.on_click(11), width="1")
+        self.btn11 = Button(master, text=11, command=lambda: self.selected_number(11), width="1")
         self.btn11.place(x=170, y=140)
-        self.btn12 = Button(master, text=12, command=lambda: self.on_click(12), width="1")
+        self.btn12 = Button(master, text=12, command=lambda: self.selected_number(12), width="1")
         self.btn12.place(x=210, y=140)
 
-        self.btn13 = Button(master, text=13, command=lambda: self.on_click(13), width="1")
+        self.btn13 = Button(master, text=13, command=lambda: self.selected_number(13), width="1")
         self.btn13.place(x=10, y=180)
-        self.btn14 = Button(master, text=14, command=lambda: self.on_click(14), width="1")
+        self.btn14 = Button(master, text=14, command=lambda: self.selected_number(14), width="1")
         self.btn14.place(x=50, y=180)
-        self.btn15 = Button(master, text=15, command=lambda: self.on_click(15), width="1")
+        self.btn15 = Button(master, text=15, command=lambda: self.selected_number(15), width="1")
         self.btn15.place(x=90, y=180)
-        self.btn16 = Button(master, text=16, command=lambda: self.on_click(16), width="1")
+        self.btn16 = Button(master, text=16, command=lambda: self.selected_number(16), width="1")
         self.btn16.place(x=130, y=180)
-        self.btn17 = Button(master, text=17, command=lambda: self.on_click(17), width="1")
+        self.btn17 = Button(master, text=17, command=lambda: self.selected_number(17), width="1")
         self.btn17.place(x=170, y=180)
-        self.btn18 = Button(master, text=18, command=lambda: self.on_click(18), width="1")
+        self.btn18 = Button(master, text=18, command=lambda: self.selected_number(18), width="1")
         self.btn18.place(x=210, y=180)
 
-        self.btn19 = Button(master, text=19, command=lambda: self.on_click(19), width="1")
+        self.btn19 = Button(master, text=19, command=lambda: self.selected_number(19), width="1")
         self.btn19.place(x=10, y=220)
-        self.btn20 = Button(master, text=20, command=lambda: self.on_click(20), width="1")
+        self.btn20 = Button(master, text=20, command=lambda: self.selected_number(20), width="1")
         self.btn20.place(x=50, y=220)
-        self.btn21 = Button(master, text=21, command=lambda: self.on_click(21), width="1")
+        self.btn21 = Button(master, text=21, command=lambda: self.selected_number(21), width="1")
         self.btn21.place(x=90, y=220)
-        self.btn22 = Button(master, text=22, command=lambda: self.on_click(22), width="1")
+        self.btn22 = Button(master, text=22, command=lambda: self.selected_number(22), width="1")
         self.btn22.place(x=130, y=220)
-        self.btn23 = Button(master, text=23, command=lambda: self.on_click(23), width="1")
+        self.btn23 = Button(master, text=23, command=lambda: self.selected_number(23), width="1")
         self.btn23.place(x=170, y=220)
-        self.btn24 = Button(master, text=24, command=lambda: self.on_click(24), width="1")
+        self.btn24 = Button(master, text=24, command=lambda: self.selected_number(24), width="1")
         self.btn24.place(x=210, y=220)
 
-        self.btn25 = Button(master, text=25, command=lambda: self.on_click(25), width="1")
+        self.btn25 = Button(master, text=25, command=lambda: self.selected_number(25), width="1")
         self.btn25.place(x=10, y=260)
-        self.btn26 = Button(master, text=26, command=lambda: self.on_click(26), width="1")
+        self.btn26 = Button(master, text=26, command=lambda: self.selected_number(26), width="1")
         self.btn26.place(x=50, y=260)
-        self.btn27 = Button(master, text=27, command=lambda: self.on_click(27), width="1")
+        self.btn27 = Button(master, text=27, command=lambda: self.selected_number(27), width="1")
         self.btn27.place(x=90, y=260)
-        self.btn28 = Button(master, text=28, command=lambda: self.on_click(28), width="1")
+        self.btn28 = Button(master, text=28, command=lambda: self.selected_number(28), width="1")
         self.btn28.place(x=130, y=260)
-        self.btn29 = Button(master, text=29, command=lambda: self.on_click(29), width="1")
+        self.btn29 = Button(master, text=29, command=lambda: self.selected_number(29), width="1")
         self.btn29.place(x=170, y=260)
-        self.btn30 = Button(master, text=30, command=lambda: self.on_click(30), width="1")
+        self.btn30 = Button(master, text=30, command=lambda: self.selected_number(30), width="1")
         self.btn30.place(x=210, y=260)
 
-        self.btn31 = Button(master, text=31, command=lambda: self.on_click(31), width="1")
+        self.btn31 = Button(master, text=31, command=lambda: self.selected_number(31), width="1")
         self.btn31.place(x=10, y=300)
-        self.btn32 = Button(master, text=32, command=lambda: self.on_click(32), width="1")
+        self.btn32 = Button(master, text=32, command=lambda: self.selected_number(32), width="1")
         self.btn32.place(x=50, y=300)
-        self.btn33 = Button(master, text=33, command=lambda: self.on_click(33), width="1")
+        self.btn33 = Button(master, text=33, command=lambda: self.selected_number(33), width="1")
         self.btn33.place(x=90, y=300)
-        self.btn34 = Button(master, text=34, command=lambda: self.on_click(34), width="1")
+        self.btn34 = Button(master, text=34, command=lambda: self.selected_number(34), width="1")
         self.btn34.place(x=130, y=300)
-        self.btn35 = Button(master, text=35, command=lambda: self.on_click(35), width="1")
+        self.btn35 = Button(master, text=35, command=lambda: self.selected_number(35), width="1")
         self.btn35.place(x=170, y=300)
-        self.btn36 = Button(master, text=36, command=lambda: self.on_click(36), width="1")
+        self.btn36 = Button(master, text=36, command=lambda: self.selected_number(36), width="1")
         self.btn36.place(x=210, y=300)
 
-        self.btn37 = Button(master, text=37, command=lambda: self.on_click(37), width="1")
+        self.btn37 = Button(master, text=37, command=lambda: self.selected_number(37), width="1")
         self.btn37.place(x=10, y=340)
-        self.btn38 = Button(master, text=38, command=lambda: self.on_click(38), width="1")
+        self.btn38 = Button(master, text=38, command=lambda: self.selected_number(38), width="1")
         self.btn38.place(x=50, y=340)
-        self.btn39 = Button(master, text=39, command=lambda: self.on_click(39), width="1")
+        self.btn39 = Button(master, text=39, command=lambda: self.selected_number(39), width="1")
         self.btn39.place(x=90, y=340)
-        self.btn40 = Button(master, text=40, command=lambda: self.on_click(40), width="1")
+        self.btn40 = Button(master, text=40, command=lambda: self.selected_number(40), width="1")
         self.btn40.place(x=130, y=340)
-        self.btn41 = Button(master, text=41, command=lambda: self.on_click(41), width="1")
+        self.btn41 = Button(master, text=41, command=lambda: self.selected_number(41), width="1")
         self.btn41.place(x=170, y=340)
-        self.btn42 = Button(master, text=42, command=lambda: self.on_click(42), width="1")
+        self.btn42 = Button(master, text=42, command=lambda: self.selected_number(42), width="1")
         self.btn42.place(x=210, y=340)
 
-        self.btn43 = Button(master, text=43, command=lambda: self.on_click(43), width="1")
+        self.btn43 = Button(master, text=43, command=lambda: self.selected_number(43), width="1")
         self.btn43.place(x=10, y=380)
-        self.btn44 = Button(master, text=44, command=lambda: self.on_click(44), width="1")
+        self.btn44 = Button(master, text=44, command=lambda: self.selected_number(44), width="1")
         self.btn44.place(x=50, y=380)
-        self.btn45 = Button(master, text=45, command=lambda: self.on_click(45), width="1")
+        self.btn45 = Button(master, text=45, command=lambda: self.selected_number(45), width="1")
         self.btn45.place(x=90, y=380)
-        self.btn46 = Button(master, text=46, command=lambda: self.on_click(46), width="1")
+        self.btn46 = Button(master, text=46, command=lambda: self.selected_number(46), width="1")
         self.btn46.place(x=130, y=380)
-        self.btn47 = Button(master, text=47, command=lambda: self.on_click(47), width="1")
+        self.btn47 = Button(master, text=47, command=lambda: self.selected_number(47), width="1")
         self.btn47.place(x=170, y=380)
-        self.btn48 = Button(master, text=48, command=lambda: self.on_click(48), width="1")
+        self.btn48 = Button(master, text=48, command=lambda: self.selected_number(48), width="1")
         self.btn48.place(x=210, y=380)
-        self.btn49 = Button(master, text=49, command=lambda: self.on_click(49), width="1")
+        self.btn49 = Button(master, text=49, command=lambda: self.selected_number(49), width="1")
         self.btn49.place(x=10, y=420)
 
         self.your_numbers = Label(master, text="Your numbers", bg="royal blue")
@@ -137,10 +139,34 @@ class LotteryMachine:
         self.user_answers2.place(x=300, y=180)
         self.user_answers3 = Label(master, width=25)
         self.user_answers3.place(x=300, y=220)
+        # currency
+
+        self.value = StringVar()
+        self.StringVar = IntVar()
+
+        self.information = requests.get('https://v6.exchangerate-api.com/v6/3b6104d9c62069d198e73219/latest/USD')
+        self.information_json = self.information.json()
+        self.conversion_rate = self.information_json['conversion_rates']
+
+        self.my_earnings = Label(root, text="Your Earning", )
+        self.my_earnings.place(x=10, y=650)
+        self.earning_entry = Entry(root, textvariable=self.value, width=10)
+        self.earning_entry.place(x=100, y=650)
+        self.my_label3 = Label(root, text="Choose a Currency:")
+        self.my_label3.place(x=10, y=690)
+
+        self.convert_list = Listbox(root, width=20)
+        for i in self.conversion_rate.keys():
+         self.convert_list.insert(END, str(i))
+        self.convert_list.place(x=100, y=730)
+
+        self.convert_btn = Button(root, command=self.converting, text="Convert", font=10, bg="royal blue", fg="white")
+        self.convert_btn.place(x=10, y=950)
+
 
         self.play_btn = Button(master, text="Play", command=self.play, bg="royal blue", borderwidth="10")
         self.play_btn.place(x=150, y=580)
-        self.claim_btn = Button(master, text="Claim Price", bg="royal blue", borderwidth="10",)
+        self.claim_btn = Button(master, text="Claim Price", bg="royal blue", borderwidth="10", command=self.claim)
         self.claim_btn.place(x=250, y=580)
         self.replay_btn = Button(master, text="Play Again", command=self.play_again, bg="royal blue", borderwidth="10")
         self.replay_btn.place(x=400, y=580)
@@ -152,7 +178,12 @@ class LotteryMachine:
         self.number2 = []
         self.number3 = []
 
-    def on_click(self, choice):
+    def converting(self):
+        num = float(self.earning_entry.get())
+        ans = num * self.information_json['conversion_rates'][self.convert_list.get(ACTIVE)]
+        self.my_label3['text'] = ans
+
+    def selected_number(self, choice):
         if len(self.number1) <= 5 and choice not in self.number1:
             self.number1.append(choice)
             self.user_answers1.config(text=self.number1)
@@ -247,6 +278,14 @@ class LotteryMachine:
         self.number1 = []
         self.number2 = []
         self.number3 = []
+
+    def claim(self):
+        root.destroy()
+        import bank
+
+    def currency(self):
+        root.destroy()
+
 
 
 numbers = LotteryMachine(root)

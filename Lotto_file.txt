@@ -1,0 +1,13 @@
+
+Name: | Player Email: | Player ID: 
+
+Name: | Player Email: | Player ID: 
+
+thandokazi 1234567890 123456 Capitec Bank
+Name: thandokazi| Player Email: siya@| Player ID: 9908211003087
+
+Name: thandokazi| Player Email: siyan@| Player ID: 9908211003087
+
+thandokazi 1234567890 123456 Capitec Bank
+thandokazi 1234567890 123456 Standard bank
+thandokazi 1234567890 123456 Standard bank

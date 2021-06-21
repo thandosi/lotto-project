@@ -1,13 +1,12 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from main1 import *
-from lott import *
+
 
 class Email:
     def __init__(self):
         self.sender_email_id = 'siyanjomeni@gmail.com'
-        self.receiver_email_id = ['leratolifechoices741@gmail.com', 'retshepilekoloko27@gmail.com', 'mpendulokhozamk2@gmail.com', 'ayamzazi.com']
+        self.receiver_email_id = ['leratolifechoices741@gmail.com', 'retshepilekoloko27@gmail.com', 'mpendulokhozamk2@gmail.com', 'ayamzazi@gmail.com.com']
         self.password = input("Enter your password: ")
         self.subject = "Greetings"
         self.msg = MIMEMultipart()
